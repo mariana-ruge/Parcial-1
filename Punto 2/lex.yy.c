@@ -741,58 +741,58 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 11 "lambda.l"
-{ lambda_found = 1; }
+{ lambda_found = 1; }  // Encontró la palabra clave "lambda"
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 12 "lambda.l"
-{ print_found = 1; }
+{ print_found = 1; }   // Encontró la palabra clave "print"
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 13 "lambda.l"
-{ /* Identifier */ }
+{ /* Identificador */ }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 14 "lambda.l"
-{ /* Number */ }
+{ /* Número */ }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 15 "lambda.l"
-{ /* Power operator */ }
+{ /* Operador de potencia */ }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 16 "lambda.l"
-{ /* Assignment operator */ }
+{ /* Operador de asignación */ }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 17 "lambda.l"
-{ /* Colon */ }
+{ /* Dos puntos */ }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 18 "lambda.l"
-{ /* Left parenthesis */ }
+{ /* Paréntesis izquierdo */ }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 19 "lambda.l"
-{ /* Right parenthesis */ }
+{ /* Paréntesis derecho */ }
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
 #line 20 "lambda.l"
-{ /* Ignore spaces, tabs, and newlines */ }
+{ /* Ignorar espacios, tabulaciones y saltos de línea */ }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 21 "lambda.l"
-{ /* Ignore everything else */ }
+{ /* Ignorar todo lo demás */ }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
@@ -1809,28 +1809,28 @@ void yyfree (void * ptr )
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s <file>\n", argv[0]);
+        fprintf(stderr, "Uso: %s <archivo>\n", argv[0]);  // Mensaje de uso del programa
         return 1;
     }
 
-    // Open the file
+    // Abrir el archivo
     FILE *file = fopen(argv[1], "r");
     if (!file) {
-        fprintf(stderr, "Error opening file %s\n", argv[1]);
+        fprintf(stderr, "Error al abrir el archivo %s\n", argv[1]);  // Mensaje de error al abrir el archivo
         return 1;
     }
 
-    // Set the input file for Lex
+    // Establecer el archivo de entrada para Lex
     yyin = file;
 
-    // Scan the input file
+    // Analizar el archivo de entrada
     yylex();
 
-    // Check if lambda expression and print statement were found
+    // Verificar si se encontraron expresiones lambda y declaraciones print
     if (lambda_found && print_found) {
-        printf("ACEPTA\n");
+        printf("ACEPTA\n");  // Si se encontraron ambas, imprimir "ACEPTA"
     } else {
-        printf("NO ACEPTA\n");
+        printf("NO ACEPTA\n");  // Si no se encontraron ambas, imprimir "NO ACEPTA"
     }
 
     fclose(file);
